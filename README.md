@@ -9,7 +9,7 @@ Web development project marketplace for bootcamp students. Ruby on Rails backend
 
 ## Demo
 
-[![Appcess Labs Demo](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+[![Appcess Labs Demo (not yet)](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 
 ## How To Use
 
@@ -36,8 +36,7 @@ Web development project marketplace for bootcamp students. Ruby on Rails backend
 * PostgreSQL 10
 * React v16.3.1
 * Redux v3.7.2
-* Notable Gems:
-
+* Notable Ruby Gems:
   * jwt: generating tokens for auth
   * fast_jsonapi: serializing API
   * figaro: storing secure keys
@@ -48,11 +47,11 @@ Web development project marketplace for bootcamp students. Ruby on Rails backend
 
 ## Code
 
-The project is backend heavy...
+Because the project emphasizes backend associations and their validations, here are some code snippets illustrating these dynamics.
 
 ### User Types
 
-Effectively four different types of users exist on the user table: School users, Company users, and admins or non-admins for both.
+Four different types of users effectively exist on the User table: School Users and Company Users, each of which can be admins and non-admins. A polymorphic association allows a User to belong to either a School or Company. A boolean column of 'is_admin' suffices to identify admin Users.
 
 `app/models/user.rb`
 
@@ -82,9 +81,9 @@ class User < ApplicationRecord
 end
 ```
 
-###
+### Association Validations
 
-Contracts join Schools and (Companies') Projects, while also optionally belonging to a Student user
+Contracts join Schools and (Companies') Projects, while also optionally belonging to a student User.
 
 `app/models/contract.rb`
 
@@ -93,10 +92,10 @@ class Contract < ApplicationRecord
   belongs_to :school
   belongs_to :project
   belongs_to :user, optional: true
-  # School admin users assign Projects to School non-admin users (students) to work on after Contract acceptance
+  # School admin users assign Projects to School non-admin Users (students) to work on after Contract acceptance
 
   validates :school_id, uniqueness: { scope: :project_id }
-  # a Project can belong to multiple schools (through Contracts), but
+  # a Project can belong to multiple schools (through Contracts), but there can only be one Contract joining them
 
   after_save :set_times, if: :will_save_change_to_is_accepted?
   # deadlines are set upon contract acceptance
@@ -116,7 +115,7 @@ end
 
 ### Dynamic Frontend Rendering
 
-Because of the many relationships and validations between the four User types, Schools, Companies, Contracts, and Projects, the frontend components are abstract to minimize code reuse.
+Because of the numerous relationships and validations between the four User types, Schools, Companies, Contracts, and Projects, the frontend components are abstract to maximize code reuse. An example can be seen on the frontend's Project Show page. Additional cards and containers become visible if the User belongs to a Company.
 
 `src/containers/projectShow.js`
 
@@ -137,11 +136,13 @@ render() {
           this.props.currentUser.is_admin === true ? (
             <Card.Group centered>
               <NewContractCard />
+              {/* If the User is an admin of a Company, a card to request a new Contract will be visible */}
             </Card.Group>
           ) : null}
           {this.props.currentUser.account_type === "Company" &&
           this.props.project.id ? (
             <ContractsContainer projectId={this.props.project.id} />
+            {/* If the User simply belongs to a Company, all the Company's Contracts will render within this container */}
           ) : null}
         </div>
       )}
