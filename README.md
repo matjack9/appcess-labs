@@ -41,7 +41,7 @@ Web development project marketplace for bootcamp students. Ruby on Rails backend
   * fast_jsonapi: serializing API
   * figaro: storing secure keys
 
-## Database Relationships
+## Domain Model
 
 ![appcess-labs-relationships](https://github.com/matjack9/appcess-labs/blob/master/appcess-labs-relationships.png)
 
