@@ -9,7 +9,7 @@ Web development project marketplace for bootcamp students. Ruby on Rails backend
 
 ## Demo
 
-[![Appcess Labs Demo (not yet)](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+[![Appcess Labs Demo](http://img.youtube.com/vi/Uu3ANC4WO5c/0.jpg)](https://youtu.be/Uu3ANC4WO5c)
 
 ## How To Use
 
@@ -160,7 +160,7 @@ render() {
 
 ## Installation
 
-1.  Clone [Appcess Labs](https://github.com/matjack9/appcess-labs)
+1.  `git clone --recursive https://github.com/matjack9/appcess-labs` to clone [Appcess Labs](https://github.com/matjack9/appcess-labs) and its submodules
 2.  Navigate to `/appcess-labs-backend`, and complete Backend Setup
 3.  In a separate terminal window, navigate to `/appcess-labs-frontend`, and complete Frontend Setup
 
@@ -192,4 +192,4 @@ Navigate to the web address of your Node server, e.g. [http://localhost:3001](ht
 * Messaging between users within project
 * Move away from alert error messages
 
-© [Matt Jackson](https://www.linkedin.com/in/matjack/)
+MIT © [Matt Jackson](https://www.linkedin.com/in/matjack/)

@@ -1,0 +1,6 @@
+[submodule "appcess-labs-backend"]
+	path = appcess-labs-backend
+	url = https://github.com/matjack9/appcess-labs-backend
+[submodule "appcess-labs-frontend"]
+	path = appcess-labs-frontend
+	url = https://github.com/matjack9/appcess-labs-frontend
